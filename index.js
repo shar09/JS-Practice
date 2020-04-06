@@ -306,13 +306,14 @@
 // *Object test
 
 // var obj = {
-//     "test": "test",
+//     test: "test",
 //     hey: "namaste",
+//     ['zapak'] : 2
 // };
 
-// console.log(obj.test);
-// console.log(obj.hey);
+// obj['hello'] = 1;
 // console.log(Object.keys(obj));
+// console.log(obj['hey']);
 
 // ---------------------------------------------------------------
 
@@ -327,52 +328,82 @@
 
 // ---------------------------------------------------------------
 // * Stopwatch
-class Stopwatch {    
-    constructor() {
-    this.flag = true;
-    this.startTime = 0;
-    this.stopTime = 0;
-    this.timeElapsed = 0;
-    console.log(this.time);
-    }
+// class Stopwatch {    
+//     constructor() {
+//     this.flag = true;
+//     this.startTime = 0;
+//     this.stopTime = 0;
+//     this.timeElapsed = 0;
+//     console.log(this.time);
+//     }
     
-    reset() {
-        this.startTime = 0;
-        this.stopTime = 0;
-        this.timeElapsed = 0;
-        return `${this.startTime} ${this.stopTime} ${this.timeElapsed}`;
-    }
+//     reset() {
+//         this.startTime = 0;
+//         this.stopTime = 0;
+//         this.timeElapsed = 0;
+//         return `${this.startTime} ${this.stopTime} ${this.timeElapsed}`;
+//     }
 
-    start() {
-        if(this.flag) {
-        this.startTime = (new Date().getTime())/1000;
-        this.flag = false;
-        }
-        else {
-            throw new Error("Start cannot be called");
-        }
-        return this.startTime;
-    }
+//     start() {
+//         if(this.flag) {
+//         this.startTime = (new Date().getTime())/1000;
+//         this.flag = false;
+//         }
+//         else {
+//             throw new Error("Start cannot be called");
+//         }
+//         return this.startTime;
+//     }
     
-    stop() {
-        if(!this.flag) {
-        this.stopTime = (new Date().getTime())/1000;
-        this.flag = true;
-        }
-        else {
-            throw new Error("Stop cannot be called");
-        }
-        return this.stopTime;
-    }
+//     stop() {
+//         if(!this.flag) {
+//         this.stopTime = (new Date().getTime())/1000;
+//         this.flag = true;
+//         }
+//         else {
+//             throw new Error("Stop cannot be called");
+//         }
+//         return this.stopTime;
+//     }
 
-    duration() {
-        this.timeElapsed = this.timeElapsed + (this.stopTime - this.startTime);
-        return this.timeElapsed;
+//     duration() {
+//         this.timeElapsed = this.timeElapsed + (this.stopTime - this.startTime);
+//         return this.timeElapsed;
+//     }
+// }
+
+// const sw = new Stopwatch();
+
+// ---------------------------------------------------------------
+
+// * Anagram Challenge
+
+function anagram(string1, string2) {
+    if(string1.length !== string2.length) {
+        return false;
     }
+        let obj1 = {};
+        let obj2 = {};    
+        for(let val of string1) {
+            obj1[val] = (obj1[val] || 0) + 1;   
+        }
+        for(let val of string2) {
+            obj2[val] = (obj2[val] || 0) + 1;
+        }
+        console.log(obj1);
+        console.log(obj2); 
+        for(key in obj1) {
+            if(!(key in obj2)) {
+                return false;
+            }
+            if(obj1[key] !== obj2[key]) {
+                return false;
+            }
+        }
+     return true;
 }
 
-const sw = new Stopwatch();
-
+console.log(anagram('sharr', 'dfhar'));
 
 
 
