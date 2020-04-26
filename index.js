@@ -161,7 +161,7 @@
 // * ELOQUENT JAVASCRIPT
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
-
+var SCRIPTS = require("./scripts.js");
 
 
 // *FizzBuzz
@@ -434,27 +434,41 @@
 // ---------------------------------------------------------------
 // * Object Deep Comparision
 
-function deepEqual(obj1, obj2) {
-//    for(key in obj1) {
-//        //console.log(key, obj1[key]);
-//        if(!(key in obj2)) {
-//            return false;
-//        }
-//        if(obj1[key]!==obj2[key]) {
-//            return false;
-//        }
-//        return true;
+// function deepEqual(obj1, obj2) {
+// //    for(key in obj1) {
+// //        //console.log(key, obj1[key]);
+// //        if(!(key in obj2)) {
+// //            return false;
+// //        }
+// //        if(obj1[key]!==obj2[key]) {
+// //            return false;
+// //        }
+// //        return true;
+// //     }
+//    for(key in obj2) {
+//        console.log(key, obj2[key]);
+//    }
+// }
+
+// let obj1 = {here: {is: "an"}, object: 2}
+// let obj2 = {value: 1, set: 2}
+// console.log(typeof obj1[object]);
+
+// console.log(deepEqual(obj1, {here: {is: "an"}, object: 2}));
+
+// ---------------------------------------------------------------
+// * Filter Function
+// function filter(array, test) {
+//     for(element of array) {
+//         // if(element.living) {
+//         //     console.log(element);
+//         // }
+//         if(test(element)) {
+//             console.log(element);
+//         }
 //     }
-   for(key in obj2) {
-       console.log(key, obj2[key]);
-   }
-}
-
-let obj1 = {here: {is: "an"}, object: 2}
-let obj2 = {value: 1, set: 2}
-console.log(typeof obj1[object]);
-
-console.log(deepEqual(obj1, {here: {is: "an"}, object: 2}));
+// }
+// filter(SCRIPTS, script => script.living);
 
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
@@ -609,7 +623,41 @@ console.log(deepEqual(obj1, {here: {is: "an"}, object: 2}));
 
 // ---------------------------------------------------------------
 
+function repeat(n, action) {
+    for(let i=1; i<=n; i++) {
+        action(i);
+    }
+}
+
+let labels = [];
+// repeat(5, i => labels.push(i));
+// console.log(labels);
+
+// function add(i) {
+//     labels.push(i);
+// }
+
+// // repeat(5, add);
+// // console.log(labels);
+
+// function unless(check, then) {
+//     if(!check) then();
+// }
+
+// function even(n) {
+//     if(n%2 == 0) {
+//         return true
+//     }
+//     else
+//         return false
+// }
+
+// repeat(5, n => { 
+//     if(even(n)) 
+//     console.log(n+ " is even")
+//     // unless(n%2==0, () => console.log(n+ " is even"));
+// });
 
 
 
-     
+
