@@ -505,12 +505,135 @@ var SCRIPTS = require("./scripts.js");
 
 // console.log(anagram('sharr', 'dfhar'));
 
+// ---------------------------------------------------------------
+// * Multiple Pointers Pattern
+// * First sum = 0 occurence
+
+// console.log(sumZero([-3,-2,-1,0,1,2,3]));
+// console.log(sumZero([-2,0,1,3]));
+// console.log(sumZero([1,2,3]));
+
+// function sumZero(array) {
+//   for(let i=0; i<array.length; i++) {
+//     for(j=i+1; j<array.length; j++) {
+//       if(array[i]+array[j] === 0) 
+//         return `[${array[i]} , ${array[j]}]`;      
+//     }
+//   }
+// }
+
+// function sumZero(array) {
+//   left = 0;
+//   right = array.length - 1;
+
+//   while(left < right) {
+//     if(array[left] + array[right] === 0) {
+//       return [array[left], array[right]]
+//     }
+//     else if(array[left] + array[right] > 0) {
+//       right--;
+//     }
+//     else {
+//       left++;
+//     }
+//   }
+// }
+
+// ---------------------------------------------------------------
+// * Counting Unique Values
+
+// console.log(countUniqueValues([1,1,1,1,1,2]));
+// console.log(countUniqueValues([1,2,3,4,4,5,5,5,6,7,8,10]));
+// console.log(countUniqueValues([]));
+// console.log(countUniqueValues([1]));
+// console.log(countUniqueValues([-2,-1,-1,0,1]));
+
+// Naive solution
+
+// function countUniqueValues(array) {
+//   let count = 0;
+//   for(let i=0; i<array.length; i++) {
+//     let check = array[i] === array[i+1];
+//       if(check) {
+//         console.log(array[i], array[i+1], check);
+//         continue;
+//       }
+//       else {
+//         console.log(array[i], array[i+1], check);
+//         count++;
+//       }
+//   }
+//   return count;
+// }
+
+// Using Multiple Pointers
+
+// function countUniqueValues(array) {
+//   let i=0;
+//   if(array.length == 0) {
+//     return `Unique values are 0`
+//   }
+//   for(let j=1; j<array.length; j++) {
+//     if(array[i] === array[j]) {
+//       continue;
+//     }
+//     else {
+//       let old = array[i+1];
+//       array[i+1] = array[j];
+//       array[j] = old;
+//       i++;
+//     }
+//   }
+//   return `Unique values are ${i+1}`;
+// }
+
+// ---------------------------------------------------------------
+// * Max Sub-Array Sum
+
+console.log(maxSubArraySum([1,2,5,2,8,1,5], 2));
+console.log(maxSubArraySum([1,2,5,2,8,1,5], 4));
+console.log(maxSubArraySum([4,2,1,6], 1));
+console.log(maxSubArraySum([4,2,1,6,2], 4))
+console.log(maxSubArraySum([], 2));
+
+// Naive solution
+
+// function maxSubArraySum(array, n) {
+//   let max = -Infinity;
+//   for(let i=0; i<=array.length-n; i++) {
+//     let sum = 0;
+//     for(let j=i;j<n+i; j++) {
+//       sum = sum + array[j];
+//     }
+//     if(sum > max) {
+//       max = sum;
+//     }
+//   } 
+//   return max;
+// }
+
+// Sliding Window Pattern
+
+// function maxSubArraySum(array, n) {
+//   let sum = 0;
+//   let max = -Infinity;
+//   if(array.length == 0) return 0;
+//   for(let i=0; i<n; i++) {
+//     sum = sum + array[i];
+//     max = sum;
+//   }
+//   for(i = n; i<array.length; i++) {
+//     sum = sum - array[i - n] + array[i];
+//     max = Math.max(max, sum);
+//   }
+//   return max;
+// }
+
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
 // * MISC
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
-
 
 // ---------------------------------------------------------------
 // *Object test
@@ -623,13 +746,13 @@ var SCRIPTS = require("./scripts.js");
 
 // ---------------------------------------------------------------
 
-function repeat(n, action) {
-    for(let i=1; i<=n; i++) {
-        action(i);
-    }
-}
+// function repeat(n, action) {
+//     for(let i=1; i<=n; i++) {
+//         action(i);
+//     }
+// }
 
-let labels = [];
+// let labels = [];
 // repeat(5, i => labels.push(i));
 // console.log(labels);
 
@@ -658,6 +781,99 @@ let labels = [];
 //     // unless(n%2==0, () => console.log(n+ " is even"));
 // });
 
+// function countBy(items, groupName) {
+//     let counts = [];
+//     for(let item of items) {
+//         let name = groupName(item);
+//         let known = counts.findIndex(c => c.name == name);
+//         console.log(known);
+//         if(known == -1) {
+//             counts.push({name, count: 1});
+//         } else {
+//             counts[known].count++;
+//         }
+//     }
+//     return counts;
+// }
+
+// console.log(countBy([1, 2, 3, 4, 5], n => n > 2));
+
+//-------------------------------------------------------
+//// Takes code and returns script
+// function characterScript(code) {
+//     for (let script of SCRIPTS) {
+//       if (script.ranges.some(([from, to]) => {
+//         return code >= from && code < to;
+//       })) {
+//         return script;
+//       }
+//     }
+//     return null;
+//   }
+
+// // Takes input(array/string) and rerurns an array of {script: name, count: n}  
+//   function countBy(items, groupName) {
+//     let counts = [];
+//     for (let item of items) {
+//       let name = groupName(item);
+//       let known = counts.findIndex(c => c.name == name);
+//       if (known == -1) {
+//         counts.push({name, count: 1});
+//       } else {
+//         counts[known].count++;
+//       }
+//     }
+//     return counts;
+//   }
+
+// // takes text, stores script name    
+//   function textScripts(text) {
+//     let scripts = countBy(text, char => {
+//       let script = characterScript(char.codePointAt(0));
+//       script? console.log(script.name) : console.log("none");
+//       return script ? script.name : "none";
+//     })
+//     .filter(({name}) => name != "none");
+//     console.log(scripts);
+  
+//     let total = scripts.reduce((n, {count}) => n + count, 0);
+//     if (total == 0) return "No scripts found";
+  
+//     return scripts.map(({name, count}) => {
+//       return `${Math.round(count * 100 / total)}% ${name}`;
+//     }).join(", ");
+//   }
 
 
+//   console.log(textScripts("h '象' 😃"));
+
+
+// function deepEqual(a, b) {
+//     if (a === b) return true;
+    
+//     if (a == null || typeof a != "object" ||
+//         b == null || typeof b != "object") return false;
+  
+//     let keysA = Object.keys(a), keysB = Object.keys(b);
+  
+//     if (keysA.length != keysB.length) return false;
+  
+//     for (let key of keysA) {
+//       if (!keysB.includes(key) || !deepEqual(a[key], b[key])) return false;
+//     }
+  
+//     return true;
+//   }
+
+//   console.log(deepEqual(5, 5));
+
+// const array = [[1], [2], [3], [4]];
+
+// const newArr = array.map((s) => s);
+
+// console.log(newArr);
+
+// for(let [element] of array) {
+//     console.log(element);
+// }
 
