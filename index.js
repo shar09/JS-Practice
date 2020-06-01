@@ -470,6 +470,26 @@ var SCRIPTS = require("./scripts.js");
 // }
 // filter(SCRIPTS, script => script.living);
 
+// ---------------------------------------------------------------
+// * Flattening array of arrays
+
+let array = [[1,2,3], [4,5], [6]];
+
+function flatten(array) {
+  array.map(([item]) => console.log(item));
+  let newArr = [];
+  //Using loop
+  for(let item of array) {
+    newArr = newArr.concat(item);
+    console.log(newArr);
+  }
+  //Using reduce
+  let reducedArr = array.reduce((flat, current) => flat.concat(current), []);
+  console.log(reducedArr);
+}
+
+flatten(array);
+
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
 // * DATASTRUCTURES AND ALGORITHMS COURSE
@@ -590,11 +610,11 @@ var SCRIPTS = require("./scripts.js");
 // ---------------------------------------------------------------
 // * Max Sub-Array Sum
 
-console.log(maxSubArraySum([1,2,5,2,8,1,5], 2));
-console.log(maxSubArraySum([1,2,5,2,8,1,5], 4));
-console.log(maxSubArraySum([4,2,1,6], 1));
-console.log(maxSubArraySum([4,2,1,6,2], 4))
-console.log(maxSubArraySum([], 2));
+// console.log(maxSubArraySum([1,2,5,2,8,1,5], 2));
+// console.log(maxSubArraySum([1,2,5,2,8,1,5], 4));
+// console.log(maxSubArraySum([4,2,1,6], 1));
+// console.log(maxSubArraySum([4,2,1,6,2], 4))
+// console.log(maxSubArraySum([], 2));
 
 // Naive solution
 
@@ -628,6 +648,66 @@ console.log(maxSubArraySum([], 2));
 //   }
 //   return max;
 // }
+
+// ---------------------------------------------------------------
+// * Frequency counter
+
+// function sameFrequency(num1, num2) {
+//   let obj1 = {}, obj2 = {};
+//   let nOne = num1.toString();
+//   let nTwo = num2.toString();
+//   if(nOne.length !== nTwo.length) {
+//     return false;
+//   }
+//   for(let value of nOne) {
+//     obj1[value] = (obj1[value] || 0) + 1;
+//   }
+//   for(let value of nTwo) {
+//     obj2[value] = (obj2[value] || 0) + 1;
+//   }
+//   for(let key in obj1) {
+//     if(!(key in obj2)) {
+//       return false;
+//     }
+//     if(obj1[key] !== obj2[key]) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
+// console.log(sameFrequency(192, 291));
+// console.log(sameFrequency(193, 241));
+// console.log(sameFrequency(192456, 291654));
+
+// ---------------------------------------------------------------
+// * Check for duplicates
+
+// Freuqency Counter Pattern
+// function checkForDuplicates(...params) {
+//   console.log(params);
+//   let obj = {};
+//   for(let item of params) {
+//     obj[item] = (obj[item] || 0) + 1;
+//   }
+//   console.log(obj);
+//   for(let key in obj) {
+//     if(obj[key] > 1) {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
+
+// console.log(checkForDuplicates(1, 2, 3));
+// console.log(checkForDuplicates(1, 1, 2));
+// console.log(checkForDuplicates('a', 'b', 'd', 'a'));
+// console.log(checkForDuplicates(1, 2, 2, 'a'));
+
+// ---------------------------------------------------------------
+
+
+
 
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
