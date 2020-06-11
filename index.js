@@ -705,9 +705,52 @@ flatten(array);
 // console.log(checkForDuplicates(1, 2, 2, 'a'));
 
 // ---------------------------------------------------------------
+// * Average Pair
 
+// function averagePair(array, target) {
+//   let i=0;
+//   let j=array.length-1;
+//   while(j>i) {
+//     if((array[i] + array[j])/2 === target) 
+//       return true;
+//     else if((array[i] + array[j])/2 > target) 
+//       j--;
+//     else 
+//       i++;  
+//   }
+//   return false;
+// }
 
+// console.log(averagePair([2,3,5,7,8,14,17,21],10))
+// console.log(averagePair([2,3,4], 20));
+// console.log(averagePair([], 1));
+// console.log(averagePair([2,3,4], 0));
+// console.log(averagePair([1,2,3,], 2.5));
 
+// ---------------------------------------------------------------
+// * Sub Sequence
+
+function isSubSequence(strOne, strTwo) {
+  let i=0;
+  let count = 0;
+  for(let j=0; j<strTwo.length; j++) {
+      if(strTwo[j]===strOne[i]) {
+        i++;
+        count++;
+      }
+      else
+       continue; 
+  }
+  if(strOne.length === count) {
+    return true;
+  }
+  return false;
+}
+
+console.log(isSubSequence('hello', 'hello world'));
+console.log(isSubSequence('sing', 'sting'));
+console.log(isSubSequence('abc', 'abracadabra'));
+console.log(isSubSequence('abc','bca'));
 
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
