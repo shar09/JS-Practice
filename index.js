@@ -473,22 +473,22 @@ var SCRIPTS = require("./scripts.js");
 // ---------------------------------------------------------------
 // * Flattening array of arrays
 
-let array = [[1,2,3], [4,5], [6]];
+// let array = [[1,2,3], [4,5], [6]];
 
-function flatten(array) {
-  array.map(([item]) => console.log(item));
-  let newArr = [];
-  //Using loop
-  for(let item of array) {
-    newArr = newArr.concat(item);
-    console.log(newArr);
-  }
-  //Using reduce
-  let reducedArr = array.reduce((flat, current) => flat.concat(current), []);
-  console.log(reducedArr);
-}
+// function flatten(array) {
+//   array.map(([item]) => console.log(item));
+//   let newArr = [];
+//   //Using loop
+//   for(let item of array) {
+//     newArr = newArr.concat(item);
+//     console.log(newArr);
+//   }
+//   //Using reduce
+//   let reducedArr = array.reduce((flat, current) => flat.concat(current), []);
+//   console.log(reducedArr);
+// }
 
-flatten(array);
+// flatten(array);
 
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
@@ -730,27 +730,27 @@ flatten(array);
 // ---------------------------------------------------------------
 // * Sub Sequence
 
-function isSubSequence(strOne, strTwo) {
-  let i=0;
-  let count = 0;
-  for(let j=0; j<strTwo.length; j++) {
-      if(strTwo[j]===strOne[i]) {
-        i++;
-        count++;
-      }
-      else
-       continue; 
-  }
-  if(strOne.length === count) {
-    return true;
-  }
-  return false;
-}
+// function isSubSequence(strOne, strTwo) {
+//   let i=0;
+//   let count = 0;
+//   for(let j=0; j<strTwo.length; j++) {
+//       if(strTwo[j]===strOne[i]) {
+//         i++;
+//         count++;
+//       }
+//       else
+//        continue; 
+//   }
+//   if(strOne.length === count) {
+//     return true;
+//   }
+//   return false;
+// }
 
-console.log(isSubSequence('hello', 'hello world'));
-console.log(isSubSequence('sing', 'sting'));
-console.log(isSubSequence('abc', 'abracadabra'));
-console.log(isSubSequence('abc','bca'));
+// console.log(isSubSequence('hello', 'hello world'));
+// console.log(isSubSequence('sing', 'sting'));
+// console.log(isSubSequence('abc', 'abracadabra'));
+// console.log(isSubSequence('abc','bca'));
 
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
@@ -999,4 +999,10 @@ console.log(isSubSequence('abc','bca'));
 // for(let [element] of array) {
 //     console.log(element);
 // }
+
+function normalize() {
+  console.log(this.coords.map(n => n/this.length));
+}
+
+normalize.call({coords: [0, 2, 3], length: 5});
 
