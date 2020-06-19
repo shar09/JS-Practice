@@ -161,7 +161,7 @@
 // * ELOQUENT JAVASCRIPT
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
-var SCRIPTS = require("./scripts.js");
+//var SCRIPTS = require("./scripts.js");
 
 
 // *FizzBuzz
@@ -752,6 +752,224 @@ var SCRIPTS = require("./scripts.js");
 // console.log(isSubSequence('abc', 'abracadabra'));
 // console.log(isSubSequence('abc','bca'));
 
+// ---------------------------------------------------------------
+// * Collecting Odd Values form Array
+
+// Naive approach
+
+// function collectOddValues(array) {
+//   let newArr = [];
+//   for(let i=0; i<array.length; i++) {
+//     if(array[i] % 2 !== 0) 
+//         newArr.push(array[i]);
+//   }
+//   return newArr;
+// }
+
+
+// -----------------
+//Recursion using helper method
+
+// function collectOddValues(array) {
+//   let newArr = [];
+//   function helper(array) {
+//     if(array.length === 0) {
+//       return newArr;
+//     }
+//     if(array[0]%2 !== 0) {
+//       newArr.push(array[0]);
+//     }
+//     return helper(array.slice(1));
+//   }
+//   helper(array);
+//   return newArr;
+// }
+
+// -----------------
+//Recursion
+
+// function collectOddValues(array) {
+//   let newArr = [];
+//   if(array.length === 0) {
+//     return newArr;  
+//   }
+//   if(array[0]%2 !== 0 ) {
+//     newArr.push(array[0]);
+//   }
+//   return newArr.concat(collectOddValues(array.slice(1)));
+// }
+
+
+// console.log(collectOddValues([1,2,3,4,5]));
+
+// ---------------------------------------------------------------
+// * Recursion Problem set 1
+
+// -----------------
+//Power
+
+// function power(base = 2, exponent = 3) {
+//   if(exponent === 0) {
+//     return 1;
+//   }
+//   return base * power(base, exponent-1);
+// }
+
+// console.log(power(2,3));
+
+// -----------------
+//Factorial
+
+// function factorial(num) {
+//   if(num === 0) {
+//     return 1;
+//   }
+//   if(num === 1) {
+//     return 1;
+//   }
+//   return num * factorial(num-1);
+// }
+
+// console.log(factorial(1));
+
+// -----------------
+//Product of Array
+
+// function productOfArray(array) {
+//   if(array.length === 0) {
+//     return 1;
+//   }
+//   return array[0] * productOfArray(array.slice(1));
+
+// }
+
+// console.log(productOfArray([1,2,3,4,5]));
+
+// -----------------
+//Recursive Range
+
+// function recursiveRange(range) {
+//   if(range === 1) {
+//     return 1;
+//   }
+//   return range + recursiveRange(range-1);
+// }
+
+// console.log(recursiveRange(6));
+
+// -----------------
+//Fibonacci
+
+// function fib(num) {
+//   let num1=0, num2=1;
+//   for(let i=0;i<num;i++) {
+//     sum=num1+num2;
+//     num1=num2;
+//     num2=sum;
+//   }
+//   return num1;
+// }
+
+// console.log(fib(10));
+
+// function fib(num) {
+//   if(num<=2) {
+//     return 1;
+//   }
+//   return fib(10);
+// }
+
+// ---------------------------------------------------------------
+// * Binary Search
+
+// function binarySearch(array, value) {
+//   let left=0, right=array.length-1, pivot = Math.floor((left+right)/2);
+//   console.log(left, right, pivot);
+//   while(left<=right) {
+//     if(array[pivot] === value) {
+//       return array.indexOf(value);
+//     }
+//     if(array[pivot]>value) {
+//       right=pivot-1;
+//     }
+//     if(array[pivot]<value) {
+//       left=pivot+1;
+//     }
+//     pivot = Math.floor((left+right)/2);
+//   }
+//   return -1;
+// }
+
+// console.log(binarySearch([2,4,6,7,10,13,15,19,21,25,76,100,190], 21));
+
+// ---------------------------------------------------------------
+// * String Sequence
+
+// function stringSearch(str, subStr) {
+//   let count=0, i=0;
+//   while(i<str.length) {
+//     console.log("-------", i);
+//     let match = 0;
+//     for(let j=0;j<subStr.length;j++) {
+//       if(str[i]===subStr[j]) {
+//         match++;
+//         console.log("match: "+match);
+//         i++;
+//       }
+//       else
+//         continue;
+//     }
+//     if(match === subStr.length) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+
+// function stringSearch(str, subStr) {
+//   let count=0, i=0;
+//   while(i<str.length) {
+//     console.log("-------", i);
+//     let match = 0;
+//     for(let j=0;j<subStr.length;j++) {
+//       if(str[i+j]===subStr[j]) {
+//         match++;
+//         console.log("match: "+match);
+//       }
+//       else
+//         continue;
+//     }
+//     if(match === subStr.length) {
+//       count++;
+//     }
+//     i++;
+//   }
+//   return count;
+// }
+
+// console.log("count: ", stringSearch('omgxcsvgghdomg', 'omg'));
+
+// ---------------------------------------------------------------
+// * Bubble Sort
+
+function bubbleSort(array) {
+  for(let i=0; i<array.length; i++) {
+    for(let j=0; j<array.length-i; j++) {
+      if(array[j] > array[j+1]) {
+        let temp = array[j];
+        array[j] = array[j+1];
+        array[j+1] = temp;
+      }
+    }
+    console.log("iteration: " +i);
+    console.log(array);
+  }
+  return array;
+}
+
+console.log(bubbleSort([4,6,8,2,3,3,19,13,12,8,7]));
+
+
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
 // * MISC
@@ -1000,9 +1218,102 @@ var SCRIPTS = require("./scripts.js");
 //     console.log(element);
 // }
 
-function normalize() {
-  console.log(this.coords.map(n => n/this.length));
-}
+// function normalize() {
+//   console.log(this.coords.map(n => n/this.length));
+// }
 
-normalize.call({coords: [0, 2, 3], length: 5});
+//-------------------------------------------------------
+//* The secret life of Objects!
 
+// let newObj = {};
+// newObj.speak = function(line) {
+//   console.log(`The rabbit says ${line}` );
+// }
+
+// newObj.speak("hello");
+
+// function speak(line) {
+//   console.log(`The ${this.type} rabbit says ${line}`);
+// }
+
+// let whiteRabbit = {type: 'white', speak};
+// whiteRabbit.speak("carrot is good");
+// let blackRabbit = {type: 'black', speak};
+// speak.call(blackRabbit, "I'm hungry");
+
+// function arrow() {
+//   console.log(this.arr.map(n => n/this.length));
+// }
+
+// arrow.call({arr: [10, 20, 30], length: 3});
+
+// console.log(Object.getPrototypeOf(whiteRabbit));
+// console.log(Object.prototype);
+// let arrObj = { arr: [1,2,3] }
+// console.log(Object.getPrototypeOf(arrObj.arr));
+// console.log(Array.prototype);
+// console.log(Object.getPrototypeOf(speak));
+
+// let methodObj = {
+//   speak(line) {
+//     console.log(`The ${this.type} rabbit says ${line}`);
+//   }
+// }
+
+// let pinkRabbit = Object.create(methodObj);
+// pinkRabbit.type = 'pink';
+// pinkRabbit.speak("I love this method");
+// console.log(Object.getPrototypeOf(pinkRabbit));
+
+// function Rabbit(type) {
+//   this.type = type;
+// }
+
+// Rabbit.prototype.speak  = function(line) {
+//   console.log(`The ${this.type} rabbit says ${line}`);
+// }
+
+// let brownRabbit = new Rabbit('brown');
+// brownRabbit.speak("constructor?");
+
+// console.log(Object.getPrototypeOf(brownRabbit));
+
+// Rabbit.prototype.variable = 10;
+// console.log(brownRabbit.variable);
+
+// class Car {
+//   constructor(type) {
+//     this.type = type;
+//   } 
+//   accelerate(speed) {
+//     console.log(`${this.type} clocking ${speed} mph`)
+//   }
+// }
+
+// let favCar = new Car('sedan');
+// favCar.accelerate(120);
+// favCar.test = function() {
+//   console.log(`${this.type} used in child class`);
+// }
+// favCar.test();
+
+// Car.prototype.brake = function(speed) {
+//   console.log(`${this.type} slowed down to ${speed} mph`)
+// }
+
+// favCar.accelerate = function(speed) {
+//   console.log(`${this.type} clocking ${speed} mph`)
+// }
+
+// Car.prototype.accelerate = function(speed) {
+//   console.log(`overriding? ${speed} mph`);
+// }
+
+// Car.prototype.variable = 0;
+// console.log(favCar.variable);
+// favCar.brake(60);
+// favCar.accelerate(80);
+
+
+// let expressionTest = new class { speak() { console.log("hello")}};
+// expressionTest.speak();
