@@ -905,6 +905,9 @@
 // ---------------------------------------------------------------
 // * String Sequence
 
+// -------------------------------
+// check again
+// -------------------------------
 // function stringSearch(str, subStr) {
 //   let count=0, i=0;
 //   while(i<str.length) {
@@ -991,9 +994,72 @@
 //   return array;
 // }
 
+//console.log(bubbleSort([4,6,8,2,3,3,19,13,12,8,7]));
 
-// console.log(bubbleSort([4,6,8,2,3,3,19,13,12,8,7]));
+// ---------------------------------------------------------------
+// * Selection Sort
 
+// function selectionSort(array) {
+//   let min=0;
+//   for(let i=0; i<array.length-1; i++) {
+//     min = array[i];
+//     for(let j=i+1; j<array.length; j++) {
+//       if(min > array[j]) {
+//         min = array[j];
+//       }
+//     }
+//     //console.log("iteration:"+i, min);
+//     if(array[i] != min) {
+//       let minIndex = array.lastIndexOf(min);
+//       //console.log(array);
+//       //console.log("minIndex: "+minIndex);
+//       let temp = array[i];
+//       array[i] = min;
+//       array[minIndex] = temp;
+//     }
+//   }
+//   return array;
+// }
+
+// --------------------
+// Es6 version
+
+// function selectionSort(array) {
+//   const swap = (array, idx1, idx2) => [array[idx1],array[idx2]] = [array[idx2], array[idx1]];
+//   for(let i=0; i<array.length; i++) {
+//     let min = i;
+//     for(let j=i+1; j<array.length; j++) {
+//       if(array[min] > array[j]) {
+//         min = j;
+//       }
+//     }
+//     if(array[i] != array[min]) {
+//       swap(array,i,min);
+//     }
+//   } 
+//   return array;
+// }
+
+// console.log(selectionSort([4,6,8,2,3,3,19,13,12,8,7]));
+
+// ---------------------------------------------------------------
+// * Insertion Sort
+
+// function insertionSort(array) {
+//   for(let i=1; i<array.length;i++) {
+//    // console.log("i: "+i);
+//     let currentVal = array[i];
+//     for(var j=i-1;j>=0 && array[j]>currentVal;j--) {
+//       array[j+1] = array[j]; 
+//       // console.log(j, array);
+//     }
+//     // console.log("j: "+j);
+//     array[j+1] = currentVal;
+//   }
+//   return array;
+// }
+
+// console.log("array: ", insertionSort([4,6,8,3,0]));
 
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
@@ -1342,3 +1408,16 @@
 
 // let expressionTest = new class { speak() { console.log("hello")}};
 // expressionTest.speak();
+
+
+// let BLUE = 'blue';
+// let cat = 'blue';
+
+// function getThreatLevel(color) {
+//   switch(color) {
+//     case BLUE: return "low";
+//     default: return "I do not know that color";
+//   }
+// }
+
+// console.log(getThreatLevel(cat));
