@@ -43,12 +43,109 @@ class LinkedList {
         }
         return current;
     }
+    shift() {
+        if(!this.head) {
+            return undefined;
+        }
+        let currentHead = this.head;
+        this.head = this.head.next;
+        this.length--;
+        if(this.length === 0) {
+            this.tail = null;
+        }
+        return currentHead;
+    }
+    unshift(val) {
+        let newNode = new Node(val);
+        if(!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        } 
+        else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
+    get(index) {
+        if(index < 0 || index >= this.length) {
+            return null;
+        }
+        let current = this.head;
+        let counter = 0;
+        while(counter!=index) {
+            current = current.next;
+            counter++;
+        }
+        return current;
+    }
+    set(index, value) {
+        let current = this.get(index);
+        if(current) {
+           current.val = value;
+        }
+        return current;
+    }
+    insert(index, val) {
+        if(index<0 || index >this.length) {
+            return false; 
+        }
+        if(index === this.length) {
+            this.push(val);
+            return true;
+        }
+        else if(index === 0) {
+            !!this.unshift(val);
+        }
+        else {
+            //let current = this.get(index);
+            let previous = this.get(index-1);
+            let current = previous.next;
+            let node = new  Node(val); 
+            previous.next = node;
+            node.next = current;
+            this.length++;
+        }
+        return true;
+    }
+    remove(index) {
+        if(index<0 || index >=this.length) {
+            return undefined;
+        }
+        else if(index === this.length-1) {
+            this.pop();
+        }
+        else if(index === 0) {
+            this.shift();
+        }
+        else {
+            let previous = this.get(index-1);
+            let current = previous.next;
+            previous.next = current.next;
+            this.length--;
+            return current;
+        }
+    }
 }
 
-let list = new LinkedList();
-console.log(list.push(6));
-console.log(list.push(7));
-console.log(list.pop());
-console.log(list.pop());
-console.log(list);
+// 1 
 
+let list = new LinkedList();
+//console.log(list.push(6));
+//console.log(list.push(7));
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list);
+// console.log(list.shift());
+// console.log(list.shift());
+//console.log(list.unshift(9));
+list.push(4);
+list.push(5);
+list.push(6);
+list.push(7);
+//console.log(list.get(2));
+//console.log(list.set(0,8));
+//console.log(list.insert(0,9));
+console.log(list.remove(1));
+console.log(list);
