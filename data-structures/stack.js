@@ -28,12 +28,12 @@ class Stack {
         if(!this.first) {
             return undefined;
         }
+        let temp = this.last;
         if(this.size === 1) {
             this.first = null;
             this.last = null;
         }
         else {
-            let temp = this.last;
             this.last = temp.next;
             temp.next = null;
         }
