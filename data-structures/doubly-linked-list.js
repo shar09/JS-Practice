@@ -151,6 +151,56 @@ class DoublyLinkedList {
         }
         return true;
     }
+    print() {
+        let arr = [];
+        let current = this.head;
+        for(let i=0; i<this.length; i++) {
+            arr.push(current.val);
+            current = current.next;
+        }
+        return arr;
+    }
+    reverse() {
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        let next = null;
+        let previous = null;
+        while(node) {
+            next = node.next;
+            previous = node.prev;
+            node.prev = next;
+            node.next = previous;
+            previous = node;
+            node = next;
+        }
+        return this; 
+    }
+    // reverse() {
+    //     let currNode = this.head;
+    //     let prevNode = null;
+    //     let nextNode = null;
+    
+    //     while (currNode) {
+    //       // Store next node.
+    //       nextNode = currNode.next;
+    //       prevNode = currNode.prev;
+    
+    //       // Change next node of the current node so it would link to previous node.
+    //       currNode.next = prevNode;
+    //       currNode.prev = nextNode;
+    
+    //       // Move prevNode and currNode nodes one step forward.
+    //       prevNode = currNode;
+    //       currNode = nextNode;
+    //     }
+    
+    //     // Reset head and tail.
+    //     this.tail = this.head;
+    //     this.head = prevNode;
+
+    //     return this;
+    //   }
 }
 
 let list = new DoublyLinkedList();
@@ -160,10 +210,13 @@ list.push(7);
 list.push(10);
 //console.log(list.pop());
 //console.log(list.shift());
-list.unshift(5);
+//list.unshift(5);
 //console.log(list.get(9));
 //list.set(0,1);
 //list.insert(0,9);
-list.remove(1);
-console.log(list);
+//list.remove(1);
+//console.log(list);
+console.log(list.print());
+console.log(list.reverse());
+console.log(list.print());
 
