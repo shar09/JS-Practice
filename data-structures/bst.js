@@ -19,6 +19,9 @@ class BinarySearchTree {
         return this;
        }
        while(iterate) {
+            if(node.value === current.value) {
+                return undefined;
+            }
             while(node.value < current.value) {
                 if(!current.left) {
                     current.left = node;
@@ -50,4 +53,5 @@ bst.insert(4);
 bst.insert(1);
 bst.insert(10);
 bst.insert(6);
+console.log(bst.insert(6));
 console.log(bst);
