@@ -25,7 +25,7 @@ class Heap {
     } 
     remove() {
         let array = this.values;
-        if(array.length===1) {
+        if(array.length<=1) {
             return array.pop();
         }
         let max = array[0];
