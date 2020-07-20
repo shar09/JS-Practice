@@ -68,6 +68,8 @@ bst.insert(4);
 bst.insert(1);
 bst.insert(10);
 bst.insert(6);
-console.log(bst.insert(6));
-console.log(bst);
-console.log(bst.find(6));
+//console.log(bst.insert(6));
+//console.log(bst);
+//console.log(bst.find(6));
+
+module.exports = { Node, BinarySearchTree} ;
