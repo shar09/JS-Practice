@@ -47,3 +47,5 @@ console.log(graph);
 graph.removeEdge(4,2);
 graph.removeVertex(12);
 console.log(graph);
+
+module.exports = { Graph } ;

@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/shar09/JS-Practice/issues"
   },
-  "homepage": "https://github.com/shar09/JS-Practice#readme"
+  "homepage": "https://github.com/shar09/JS-Practice#readme",
+  "dependencies": {
+    "require": "^2.4.20"
+  }
 }

@@ -880,54 +880,7 @@
 // }
 
 // ---------------------------------------------------------------
-// * Binary Search
-
-// function binarySearch(array, value) {
-//   let left=0, right=array.length-1, pivot = Math.floor((left+right)/2);
-//   console.log(left, right, pivot);
-//   while(left<=right) {
-//     if(array[pivot] === value) {
-//       return array.indexOf(value);
-//     }
-//     if(array[pivot]>value) {
-//       right=pivot-1;
-//     }
-//     if(array[pivot]<value) {
-//       left=pivot+1;
-//     }
-//     pivot = Math.floor((left+right)/2);
-//   }
-//   return -1;
-// }
-
-// console.log(binarySearch([2,4,6,7,10,13,15,19,21,25,76,100,190], 21));
-
-// ---------------------------------------------------------------
 // * String Sequence
-
-// -------------------------------
-// check again
-// -------------------------------
-// function stringSearch(str, subStr) {
-//   let count=0, i=0;
-//   while(i<str.length) {
-//     console.log("-------", i);
-//     let match = 0;
-//     for(let j=0;j<subStr.length;j++) {
-//       if(str[i]===subStr[j]) {
-//         match++;
-//         console.log("match: "+match);
-//         i++;
-//       }
-//       else
-//         continue;
-//     }
-//     if(match === subStr.length) {
-//       count++;
-//     }
-//   }
-//   return count;
-// }
 
 // function stringSearch(str, subStr) {
 //   let count=0, i=0;
@@ -940,7 +893,7 @@
 //         console.log("match: "+match);
 //       }
 //       else
-//         continue;
+//         break;
 //     }
 //     if(match === subStr.length) {
 //       count++;
@@ -953,113 +906,103 @@
 // console.log("count: ", stringSearch('omgxcsvgghdomg', 'omg'));
 
 // ---------------------------------------------------------------
-// * Bubble Sort
-
-// //Naive approach
-// function bubbleSort(array) {
-//   for(let i=0; i<array.length; i++) {
-//     for(let j=0; j<array.length-i; j++) {
-//       if(array[j] > array[j+1]) {
-//         let temp = array[j];
-//         array[j] = array[j+1];
-//         array[j+1] = temp;
-//       }
+// * Check subString in String
+// function isSubSequence(strOne, strTwo) {
+//     let i = 0;
+//     let j = 0;
+//     let count = 0;
+//     while(j < strTwo.length) {
+//         if(strTwo[j] === strOne[i]) {
+//             count++;
+//             i++;
+//             j++;
+//         }
+//         else {
+//             j++;
+//         }
 //     }
-//     console.log("iteration: " +i);
-//     console.log(array);
-//   }
-//   return array;
+//     if(count === strOne.length) {
+//         return true;
+//     }
+//     return false;
 // }
 
-
-// //More Optimized
-// function swap(arr, idx1, idx2) {
-//   return [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
-// }
-
-// function bubbleSort(array) {
-//   let noSwaps;
-//   for(let i=array.length; i>0; i--) {
-//     noSwaps = true;
-//     for(let j=0; j<i-1; j++) {
-//       if(array[j] > array[j+1]) {
-//         swap(array, j, j+1);
-//         noSwaps = false;
-//       }
-//     }
-//     if(noSwaps){
-//       break;
-//     }
-//   }
-//   return array;
-// }
-
-//console.log(bubbleSort([4,6,8,2,3,3,19,13,12,8,7]));
+// console.log(isSubSequence('hello', 'hello world'));
+// console.log(isSubSequence('sing', 'sting'));
+// console.log(isSubSequence('abc', 'cabc'));
+// console.log(isSubSequence('abc', 'abracadabra'));
 
 // ---------------------------------------------------------------
-// * Selection Sort
+// * String Reverse (Recursive)
 
-// function selectionSort(array) {
-//   let min=0;
-//   for(let i=0; i<array.length-1; i++) {
-//     min = array[i];
-//     for(let j=i+1; j<array.length; j++) {
-//       if(min > array[j]) {
-//         min = array[j];
-//       }
+// function stringReverse(string) {
+//     let reverse = "";
+//     function helper(string) {
+//         if(string.length === 0) {
+//             return;
+//         }
+//         reverse = reverse.concat(string[string.length - 1]);
+//         helper(string.slice(0, string.length - 1));
 //     }
-//     //console.log("iteration:"+i, min);
-//     if(array[i] != min) {
-//       let minIndex = array.lastIndexOf(min);
-//       //console.log(array);
-//       //console.log("minIndex: "+minIndex);
-//       let temp = array[i];
-//       array[i] = min;
-//       array[minIndex] = temp;
-//     }
-//   }
-//   return array;
+
+//     helper(string);
+//     return reverse;
+
 // }
 
-// --------------------
-// Es6 version
-
-// function selectionSort(array) {
-//   const swap = (array, idx1, idx2) => [array[idx1],array[idx2]] = [array[idx2], array[idx1]];
-//   for(let i=0; i<array.length; i++) {
-//     let min = i;
-//     for(let j=i+1; j<array.length; j++) {
-//       if(array[min] > array[j]) {
-//         min = j;
-//       }
-//     }
-//     if(array[i] != array[min]) {
-//       swap(array,i,min);
-//     }
-//   } 
-//   return array;
-// }
-
-// console.log(selectionSort([4,6,8,2,3,3,19,13,12,8,7]));
+// console.log(stringReverse('abcde')); 
 
 // ---------------------------------------------------------------
-// * Insertion Sort
+// * Array flatten
 
-// function insertionSort(array) {
-//   for(let i=1; i<array.length;i++) {
-//    // console.log("i: "+i);
-//     let currentVal = array[i];
-//     for(var j=i-1;j>=0 && array[j]>currentVal;j--) {
-//       array[j+1] = array[j]; 
-//       // console.log(j, array);
+// function arrayFlatten(array) {
+//   let flatArray = [];
+//   for(let i=0; i<array.length; i++) {
+//     if(Array.isArray(array[i])) {
+//         // console.log(i, array[i], flatArray);
+//         flatArray = flatArray.concat(arrayFlatten(array[i]));
+//     }  
+//     else {
+//         flatArray.push(array[i]);
 //     }
-//     // console.log("j: "+j);
-//     array[j+1] = currentVal;
 //   }
-//   return array;
+//   return flatArray;
 // }
 
-// console.log("array: ", insertionSort([4,6,8,3,0]));
+// console.log(arrayFlatten([[[1,2,3]],[],[[4]]])); 
+
+// ---------------------------------------------------------------
+// * Capitalize all words in an array
+
+// function capatilizeWords(array) {
+//   let capArray = [];
+//   let capString = "";
+//   for(let word of array) {
+//     capString = word.toUpperCase();
+//     capArray.push(capString);
+//   }
+//   return capArray;
+// }
+
+// console.log(capatilizeWords(['shar', 'bhar', 'fhar']));
+
+// ---------------------------------------------------------------
+// * Capitalize First letter
+
+// function capitalizeFirst (array) {
+//     // add whatever parameters you deem necessary - good luck!
+//     let newArr = [];
+//      for(let i=0; i<array.length; i++) {
+//              let word = array[i]
+//              let letter = array[i].charCodeAt(0) - 32;
+//              let capital = String.fromCharCode(letter)
+//           //   console.log(word, letter, capital);
+//           //   console.log(capital.concat(word.slice(1)));
+//              newArr.push(capital.concat(word.slice(1)))
+//      }
+//      return newArr;
+//   }
+
 
 // -------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
@@ -1421,3 +1364,10 @@
 // }
 
 // console.log(getThreatLevel(cat));
+
+// let array = [[1,2],[2,4],[]]
+// console.log([].concat(...array));
+
+
+
+
