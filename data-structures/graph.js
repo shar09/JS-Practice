@@ -34,18 +34,18 @@ class Graph {
     }
 }
 
-let graph = new Graph();
-graph.addVertex(6);
-graph.addVertex(12);
-graph.addVertex(4);
-graph.addVertex(2);
-graph.addEdge(4,2);
-graph.addEdge(6,12);
-graph.addEdge(6,2);
-graph.addEdge(2,12);
-console.log(graph);
-graph.removeEdge(4,2);
-graph.removeVertex(12);
-console.log(graph);
+// let graph = new Graph();
+// graph.addVertex(6);
+// graph.addVertex(12);
+// graph.addVertex(4);
+// graph.addVertex(2);
+// graph.addEdge(4,2);
+// graph.addEdge(6,12);
+// graph.addEdge(6,2);
+// graph.addEdge(2,12);
+// console.log(graph);
+// graph.removeEdge(4,2);
+// graph.removeVertex(12);
+// console.log(graph);
 
 module.exports = { Graph } ;

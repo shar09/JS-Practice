@@ -9,6 +9,7 @@ tree.insert(8);
 tree.insert(20);
 //console.log(tree);
 
+
 function dfsIn(tree) {
     current = tree.root;
     let visited = [];

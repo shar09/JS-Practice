@@ -65,3 +65,23 @@ heap.insert(25);
 console.log(heap);
 console.log(heap.remove());
 console.log(heap);
+
+//--------------------------------------------------
+// Insert alternate solution
+
+// let heap = [];
+
+// function insert(value) {
+//     heap.push(value);
+//     let index = heap.length - 1; 
+//     let parentIndex = Math.floor((index - 1)/2)
+//     while(heap[index] > heap[parentIndex]) {
+//         //swap
+//         let temp = heap[index];
+//         heap[index] = heap[parentIndex];
+//         heap[parentIndex] = temp;
+//         index = parentIndex;
+//         parentIndex =  Math.floor((index - 1)/2)
+//     }
+//     return heap;
+// }

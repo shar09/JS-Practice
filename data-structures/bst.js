@@ -12,20 +12,18 @@ class BinarySearchTree {
     }
     insert(value) { 
        let node  = new Node(value);
-       let iterate = true;
        let current = this.root;
        if(!this.root) {
         this.root = node;
         return this;
        }
-       while(iterate) {
+       while(true) {
             if(node.value === current.value) {
                 return undefined;
             }
             while(node.value < current.value) {
                 if(!current.left) {
                     current.left = node;
-                    iterate = false;
                     return this;
                 }
                 else {
@@ -35,7 +33,6 @@ class BinarySearchTree {
             while(node.value > current.value) {
                 if(!current.right) {
                     current.right = node;
-                    iterate = false;
                     return this;
                 }
                 else {
@@ -59,7 +56,7 @@ class BinarySearchTree {
         }
         return false;
     }
-}    
+}  
 
 let bst = new BinarySearchTree();
 bst.insert(3);
@@ -69,7 +66,36 @@ bst.insert(1);
 bst.insert(10);
 bst.insert(6);
 //console.log(bst.insert(6));
-//console.log(bst);
+console.log(bst);
 //console.log(bst.find(6));
+
+//-------------------------
+// * Insert alternate solution
+    // insert(value) {
+    //     let node = new Node(value);
+    //     let current = this.root;
+    //     if(!current) {
+    //         this.root = node;
+    //     }
+    //     while(current) {
+                // if(node.value === current.value) {
+                //    return undefined;
+                // }
+    //         if(node.value > current.value) {
+    //             if(current.right === null) {
+    //                 current.right = node;
+    //                 return this;
+    //             }
+    //             current = current.right;
+    //         }
+    //         else if(node.value < current.value) {
+    //             if(current.left === null) {
+    //                 current.left = node;
+    //                 return this;
+    //             } 
+    //             current = current.left;
+    //         }    
+    //     }
+    // }
 
 module.exports = { Node, BinarySearchTree} ;
