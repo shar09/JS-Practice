@@ -11,7 +11,7 @@ tree.insert(20);
 
 
 function dfsIn(tree) {
-    current = tree.root;
+    let current = tree.root;
     let visited = [];
     function traverse(current) {
         if(current.left) {

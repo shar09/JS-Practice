@@ -1368,5 +1368,118 @@
 // let array = [[1,2],[2,4],[]]
 // console.log([].concat(...array));
 
+// const obj = {
+//     stuff: "foo",
+//     data: {
+//         val: {
+//             thing: {
+//                 info: "bar",
+//                 moreInfo: {
+//                     evenMoreInfo: {
+//                         weMadeIt: "baz"
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
+// function collectStrings(obj) {
+//     let collectionOfStrings = [];
+//     function helper(obj) {
+//         for(let key in obj) {
+//             if(typeof obj[key] === 'object') {
+//                 helper(obj[key]);
+//             }
+//             else if(typeof obj[key] === 'string') {
+//                 collectionOfStrings.push(obj[key]);
+//             }
+//         }
+//         return;
+//     }
+//     helper(obj);
+//     return collectionOfStrings;
+// }
+
+// console.log(collectStrings(obj));
+var moarKittyData = [
+    { name: 'LilBulb', age: 7 },
+    { name: 'Garfield', age: 40 }, 
+    { name: 'Heathcliff', age: 45 },
+    { name: 'Blue', age: 1 }, 
+    { name: 'Grumpy', age: 6 }
+]
+
+
+function comp(a, b) {
+    if(a < b) return -1;
+    else if(a > b) return 1;
+    return 0;
+}
+
+function oldestToYoungest(a, b) {
+    return b.age - a.age;
+}
+
+// console.log(mergeSort( ['LilBulb', 'Garfield', 'Heathcliff', 'Blue', 'Grumpy'], comp));
+
+// console.log(mergeSort( moarKittyData, oldestToYoungest));
+
+
+// class Stack extends Queue{
+//     constructor() {
+//         super();
+//     }
+//     push(val) {
+//        super.enqueue(val);
+//     }
+//     pop() {
+                
+//     }
+// }
+
+// QUEUE AND NODE HAVE BEEN IMPLEMENTED FOR YOU
+
+// class Node {
+//     constructor(value) {
+//         this.value = value;
+//         this.next = null;
+//     }
+// }
+
+// class Queue {
+//     constructor() {
+//         this.first = null;
+//         this.last = null;
+//         this.size = 0;
+//     }
+//     enqueue(data) {
+//         var node = new Node(data);
+
+//         if (!this.first) {
+//             this.first = node;
+//             this.last = node;
+//         } else {
+//             this.last.next = node;
+//             this.last = node;
+//         }
+
+//         return ++this.size;
+//     }
+
+//     dequeue() {
+//         if (!this.first) return null;
+
+//         var temp = this.first;
+//         if (this.first == this.last) {
+//             this.last = null;
+//         }
+//         this.first = this.first.next;
+//         this.size--;
+//         return temp.value;
+//     }
+// }
+
+// let queueOne = new Queue();
+// let queueTwo = new Queue();
 

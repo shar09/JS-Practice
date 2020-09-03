@@ -1,49 +1,44 @@
-class Node {
-    constructor(value) {
-        this.val=value;
-        this.next = null;
+class Node{
+    constructor(val){
+        this.val = val;
     }
 }
 
-class Stack {
-    constructor() {
+class Stack{
+    constructor(){
         this.first = null;
-        this.last = null;
+        this.last = null;     
         this.size = 0;
     }
-    push(value) {
-        let node = new Node(value);
-        if(!this.first) {
+    push(val){
+        var node = new Node(val);
+
+        if (!this.first){
             this.first = node;
             this.last = node;
+        } else {
+            var tmp = this.first;
+            this.first=node;
+            this.first.next=tmp;
         }
-        else {
-            let temp = this.last;
-            this.last = node;
-            node.next = temp;
-        }
+
         return ++this.size;
-    }   
+    }
     pop() {
         if(!this.first) {
-            return undefined;
+            return null;
         }
-        let temp = this.last;
-        if(this.size === 1) {
-            this.first = null;
+        let temp = this.first;
+        if(this.first === this.last) {
             this.last = null;
         }
-        else {
-            this.last = temp.next;
-            temp.next = null;
-        }
+        this.first = this.first.next;
         this.size--;
-        return temp.value;   
+        return temp.val;   
     } 
 }
 
 let stack = new Stack();
-stack.push(10);
 stack.push(18);
 stack.push(20);
 console.log(stack.pop());

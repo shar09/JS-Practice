@@ -10,7 +10,7 @@ tree.insert(20);
 //console.log(tree);
 
 function dfsPre(tree) {
-    current = tree.root;
+    let current = tree.root;
     let visited = [];
     function traverse(current) {
         visited.push(current.value);

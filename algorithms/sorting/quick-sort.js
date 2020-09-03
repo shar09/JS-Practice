@@ -1,4 +1,4 @@
-function pivotHelper(array, start, end) {
+function pivotHelper(array, start=0, end=array.length-1) {
     let pivot = array[start], pivotIndex = start;
     for(let i=start+1; i<=end; i++) {
         if(pivot > array[i]) {
@@ -14,15 +14,12 @@ function pivotHelper(array, start, end) {
     return pivotIndex;
 }
 
-function quickSort(array, left=0, right=array.length-1) {
-    console.log("left: "+left, "right: "+right);
-    if(left<right) {
-    let pivot = pivotHelper(array, left, right);
-    console.log(pivot);
-        quickSort(array, left, pivot-1);
-        quickSort(array, pivot + 1, right);
+function quickSort(array, start=0, end=array.length-1) {
+    if(start<end) {    
+    let pivotIndex = pivotHelper(array, start, end);
+        quickSort(array, start, pivotIndex-1);
+        quickSort(array, pivotIndex+1, end);
     }
-    console.log(array);
     return array;
 }
 
