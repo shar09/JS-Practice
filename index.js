@@ -1426,60 +1426,89 @@ function oldestToYoungest(a, b) {
 // console.log(mergeSort( moarKittyData, oldestToYoungest));
 
 
-// class Stack extends Queue{
-//     constructor() {
-//         super();
-//     }
-//     push(val) {
-//        super.enqueue(val);
-//     }
-//     pop() {
-                
-//     }
-// }
+
 
 // QUEUE AND NODE HAVE BEEN IMPLEMENTED FOR YOU
 
-// class Node {
-//     constructor(value) {
-//         this.value = value;
-//         this.next = null;
-//     }
-// }
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
 
-// class Queue {
-//     constructor() {
-//         this.first = null;
-//         this.last = null;
-//         this.size = 0;
-//     }
-//     enqueue(data) {
-//         var node = new Node(data);
+class Queue {
+    constructor() {
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+    enqueue(data) {
+        var node = new Node(data);
 
-//         if (!this.first) {
-//             this.first = node;
-//             this.last = node;
-//         } else {
-//             this.last.next = node;
-//             this.last = node;
-//         }
+        if (!this.first) {
+            this.first = node;
+            this.last = node;
+        } else {
+            this.last.next = node;
+            this.last = node;
+        }
 
-//         return ++this.size;
-//     }
+        return ++this.size;
+    }
 
-//     dequeue() {
-//         if (!this.first) return null;
+    dequeue() {
+        if (!this.first) return null;
 
-//         var temp = this.first;
-//         if (this.first == this.last) {
-//             this.last = null;
-//         }
-//         this.first = this.first.next;
-//         this.size--;
-//         return temp.value;
-//     }
-// }
+        var temp = this.first;
+        if (this.first == this.last) {
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size--;
+        return temp;
+    }
+}
 
-// let queueOne = new Queue();
-// let queueTwo = new Queue();
+class Stack {
+    constructor() {
+        this.primaryQueue = new Queue();
+        this.secondaryQueue = new Queue();
+    }
+    push(val) {
+        this.primaryQueue.enqueue(val);
+        return this;
+    }
+    pop() {
+        let temp;
+        if(this.primaryQueue.size === 0) {
+            return null;
+        }
+
+        while(this.primaryQueue.first.next) {
+            temp = this.primaryQueue.dequeue();
+            this.secondaryQueue.enqueue(temp.value);
+        }
+        let popped = this.primaryQueue.dequeue();
+        while(this.secondaryQueue.first) {
+            temp = this.secondaryQueue.dequeue();
+            this.primaryQueue.enqueue(temp.value);
+        }
+        return popped.value;
+    }
+}
+
+let s = new Stack();
+s.push(10).push(20).push(30);
+console.log(s.pop());
+console.log(s.pop());
+console.log(s.pop());
+console.log(s.pop());
+s.push(30).push(40).push(50);
+console.log(s.pop());
+console.log(s.push(60));
+console.log(s.pop());
+
+
+
 
