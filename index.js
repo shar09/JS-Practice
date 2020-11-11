@@ -959,7 +959,7 @@
 //   let flatArray = [];
 //   for(let i=0; i<array.length; i++) {
 //     if(Array.isArray(array[i])) {
-//         // console.log(i, array[i], flatArray);
+//         console.log(i, array[i], flatArray);
 //         flatArray = flatArray.concat(arrayFlatten(array[i]));
 //     }  
 //     else {
@@ -1430,85 +1430,406 @@ function oldestToYoungest(a, b) {
 
 // QUEUE AND NODE HAVE BEEN IMPLEMENTED FOR YOU
 
+// class Node {
+//     constructor(value) {
+//         this.value = value;
+//         this.next = null;
+//     }
+// }
+
+// class Queue {
+//     constructor() {
+//         this.first = null;
+//         this.last = null;
+//         this.size = 0;
+//     }
+//     enqueue(data) {
+//         var node = new Node(data);
+
+//         if (!this.first) {
+//             this.first = node;
+//             this.last = node;
+//         } else {
+//             this.last.next = node;
+//             this.last = node;
+//         }
+
+//         return ++this.size;
+//     }
+
+//     dequeue() {
+//         if (!this.first) return null;
+
+//         var temp = this.first;
+//         if (this.first == this.last) {
+//             this.last = null;
+//         }
+//         this.first = this.first.next;
+//         this.size--;
+//         return temp;
+//     }
+// }
+
+// class Stack {
+//     constructor() {
+//         this.primaryQueue = new Queue();
+//         this.secondaryQueue = new Queue();
+//     }
+//     push(val) {
+//         this.primaryQueue.enqueue(val);
+//         return this;
+//     }
+//     pop() {
+//         let temp;
+//         if(this.primaryQueue.size === 0) {
+//             return null;
+//         }
+
+//         while(this.primaryQueue.first.next) {
+//             temp = this.primaryQueue.dequeue();
+//             this.secondaryQueue.enqueue(temp.value);
+//         }
+//         let popped = this.primaryQueue.dequeue();
+//         while(this.secondaryQueue.first) {
+//             temp = this.secondaryQueue.dequeue();
+//             this.primaryQueue.enqueue(temp.value);
+//         }
+//         return popped.value;
+//     }
+// }
+
+// let s = new Stack();
+// s.push(10).push(20).push(30);
+// console.log(s.pop());
+// console.log(s.pop());
+// console.log(s.pop());
+// console.log(s.pop());
+// s.push(30).push(40).push(50);
+// console.log(s.pop());
+// console.log(s.push(60));
+// console.log(s.pop());
+
+// function coinChange(coins, amount) {
+//     // add whatever parameters you deem necessary - good luck!
+//     let rows = coins.length+1;
+//     let columns = amount + 1;
+//     let a = [];
+//     for(let m=0; m<rows; m++) {
+//         a[m] = [];
+//         for(let n=0; n<columns; n++) {
+//             if(m === 0 && n!== 0) {
+//                 a[m][n] = 0;
+//             }
+//             else if(n === 0 ) {
+//                a[m][n] = 1;
+//             }
+//             else {
+//                 a[m][n] = null;
+//             }
+//         }
+//     }
+//     for(let i=1; i<rows; i++) {
+//         for(let j=1; j<columns; j++) {
+//            a[i][j] = a[i-1][j] + ( a[i][j-coins[i-1]] || 0 );
+//         }
+//     }
+//     //console.log(a);
+//     return a[a.length-1][amount];
+// }
+
+// const denoms = [1,2,5];
+// console.log(coinChange(denoms, 5));
+
+
+
+// 2sum
+// brute force
+// 2 pointers
+// binary search
+
+// function twoSum(array, target) {
+//     for(let i=0; i<array.length-1; i++) {
+//         for(j=i+1; j<array.length; j++) {
+//             if(array[i] + array[j] === target) {
+//                 return [i, j];
+//             }
+//         }
+//     }
+//     return [-1, -1];
+// }
+
+// function twoSum(array, target) {
+//     let i=0;
+//     let j=array.length-1;
+//     while(i < j) {
+//         if(array[i] + array[j] === target) {
+//             return [i, j];
+//         }
+//         if(array[i] + array[j] > target) {
+//             j--;
+//         }
+//         else {
+//             i++;
+//         }
+//     }
+//     return [-1, -1];
+// }
+
+
+// console.log(twoSum([2,3,4,5,5,6,7,8,8,9], 15));
+// console.log(twoSum([1,2], 9));
+
 class Node {
     constructor(value) {
         this.value = value;
-        this.next = null;
+        this.left = null;
+        this.right = null;
     }
 }
 
-class Queue {
+class BinarySearchTree {
     constructor() {
-        this.first = null;
-        this.last = null;
-        this.size = 0;
+        this.root = null;
     }
-    enqueue(data) {
-        var node = new Node(data);
-
-        if (!this.first) {
-            this.first = node;
-            this.last = node;
-        } else {
-            this.last.next = node;
-            this.last = node;
+    insert(value) { 
+        let node  = new Node(value);
+        if(!this.root) {
+            this.root = node;
+            return;
         }
-
-        return ++this.size;
-    }
-
-    dequeue() {
-        if (!this.first) return null;
-
-        var temp = this.first;
-        if (this.first == this.last) {
-            this.last = null;
+        let queue = [];
+        queue.push(this.root);
+        let current;
+        while(queue.length > 0) {
+            current = queue.shift();
+            if(!current.left) {
+               current.left = node;
+            }
+            else if(!current.right) {
+                current.right = node;
+            }
+            else {
+                queue.push(current.left);
+                queue.push(current.right);
+            }
         }
-        this.first = this.first.next;
-        this.size--;
-        return temp;
     }
 }
 
-class Stack {
-    constructor() {
-        this.primaryQueue = new Queue();
-        this.secondaryQueue = new Queue();
-    }
-    push(val) {
-        this.primaryQueue.enqueue(val);
-        return this;
-    }
-    pop() {
-        let temp;
-        if(this.primaryQueue.size === 0) {
-            return null;
-        }
+let bst = new BinarySearchTree();
+bst.insert(1);
+bst.insert(1);
+bst.insert(1);
+// console.log(bst);
 
-        while(this.primaryQueue.first.next) {
-            temp = this.primaryQueue.dequeue();
-            this.secondaryQueue.enqueue(temp.value);
+
+function solution(root) {
+    //write your solution here
+    let singleNodes = 0;
+    let left, right;
+    function dfs(root) {
+        let current = root;
+        if(current.left) {
+            left = dfs(current.left);
+            console.log("l: " +left);
         }
-        let popped = this.primaryQueue.dequeue();
-        while(this.secondaryQueue.first) {
-            temp = this.secondaryQueue.dequeue();
-            this.primaryQueue.enqueue(temp.value);
+        else {
+            console.log("no left");
+            left = null;
         }
-        return popped.value;
+        if(current.right) {
+            right = dfs(current.right);
+            console.log("r: "+ right);
+        }
+        else {
+            console.log("no right");
+            right = null;
+        }
+        console.log(left, right);
+        if(!((left && right) || (!left && !right))) {
+            singleNodes++;
+        }
+        console.log("S:" +singleNodes);
+        return 1;
     }
+    dfs(root); 
+    return singleNodes;  
 }
 
-let s = new Stack();
-s.push(10).push(20).push(30);
-console.log(s.pop());
-console.log(s.pop());
-console.log(s.pop());
-console.log(s.pop());
-s.push(30).push(40).push(50);
-console.log(s.pop());
-console.log(s.push(60));
-console.log(s.pop());
+// console.log(solution(bst.root));
 
 
+// function SnapshotArray(length){
+//     this.array = new Array(length).fill(0);
+//     this.snapHistory = []; 
+// }
 
+// SnapshotArray.prototype.set = function(index, val) {
+//     if(index < this.array.length) {
+//         this.array[index] = val;
+//         return true;
+//     }
+//     return false; 
+// }
+
+// SnapshotArray.prototype.snap = function() {
+//     this.snapHistory.push(this.array);
+//     return this.snapHistory.length - 1;
+// }
+
+// SnapshotArray.prototype.get = function(index, snap_id) {
+//     return this.snapHistory[snap_id][index];
+// } 
+ 
+// let snapshot = new SnapshotArray(10);
+// snapshot.set(0,1);
+// snapshot.set(1,2);
+// snapshot.set(2,3);
+// snapshot.set(3,4);
+// snapshot.set(4,5);
+// snapshot.set(5,6);
+// console.log(snapshot);
+// console.log(snapshot.snap());
+// console.log(snapshot.get(0,0));
+// snapshot.set(10,6);
+// snapshot.set(9,10);
+// snapshot.set(4,6);
+// console.log(snapshot.snap());
+// console.log(snapshot.get(10,0));
+// console.log(snapshot.get(9,1));
+// console.log(snapshot.get(4,1));
+
+// function searchRange(nums, target) {
+//     // Write your code here
+//     let range = [];
+//     let left = 0, right = nums.length-1;
+//     let mid;
+//     while(left+1 < right) {
+//         mid = Math.floor((left+right)/2);
+//         if(target <= nums[mid]) 
+//             right = mid
+//         else 
+//             left = mid    
+//     } 
+//     // Post processing
+//     if(nums[left] === target) 
+//         range.push(left);
+//     else if(nums[right] === target) 
+//         range.push(right);
+//     else 
+//         range.push(-1);
+    
+    
+//     left = 0, right = nums.length-1;    
+//     while(left+1 < right) {
+//         mid = Math.floor((left+right)/2);
+//         if(target < nums[mid]) 
+//             right = mid
+//         else 
+//             left = mid    
+//     }
+//     // Post processing
+//         if(nums[right] === target) 
+//             range.push(right);
+//         else if(nums[left] === target) 
+//             range.push(left);
+//         else 
+//             range.push(-1);
+//         return range;
+// }
+
+// console.log(searchRange([5,7,7,8,8,10], 8));
+
+function fixedPoint(arr) {
+    let left = 0, right = arr.length-1;
+    let mid;
+    while(left + 1 < right) {
+        mid = Math.floor((left+right)/2);
+        if(arr[mid] === mid) 
+            return mid;
+        else if(arr[mid] > mid)  {
+            right = mid;
+        }
+        else
+            left = mid;        
+    }
+    
+    console.log("left", left, "right", right)
+    // Post Processing
+        if(arr[left] === left)
+            return left;
+        if(arr[right] === right)
+            return right;
+        return -1;
+}
+
+// console.log(fixedPoint([0,2,5,8,17]));
+
+
+// function solution(root) {
+//     //write your solution here
+//     // var minLeafDepth = Infinity;
+//     // function maxDepth(root) {
+//         if(root === null)
+//             return 0;
+//         let left = solution(root.left);
+//         let right = solution(root.right);
+//         // console.log(left);
+//         // console.log(Math.max(left, right) + 1);
+//         // minLeafDepth = Math.min(minLeafDepth, Math.max(left, right) + 1);
+//         // console.log(minLeafDepth)
+//         return Math.max(left, right) + 1;
+//     //}
+//     // maxDepth(root);
+//     // return minLeafDepth;   
+// }
+
+
+function restoreIpAddresses(s) {
+    // Write your code here
+    if(s.length > 12) {
+        return [];
+    }
+    function isValidIpNumber(t) {
+        if(t.length < 0 || t.length > 3) 
+            return false;
+        if(t.length > 1 && t[0] == 0)
+            return false;
+        if(parseInt(t) > 255)
+            return false;
+        return true;        
+    }
+    function formatIpWithDots() {
+        return [s.slice(0, dots[0]), s.slice(dots[0], dots[1]), s.slice(dots[1], dots[2]), 
+                s.slice(dots[2])        
+            ].join('.')   
+    }
+    
+    let dots = [];
+    let res = [];
+    function backtracking() {
+        console.log("dots: ", dots);
+        if(dots.length === 3) {
+            if(isValidIpNumber(s.slice(dots[2]))) {
+                console.log("res:" ,formatIpWithDots());
+                res = res.concat(formatIpWithDots())
+            }
+        }
+        else {
+            let start = dots.length > 0 ? dots[dots.length-1] : 0;
+            for(let end=start; end<Math.min(start+3, s.length-1); end++) {
+                console.log("string ", s.slice(start, end+1), s.slice(start, end+1) < '255')
+                if(isValidIpNumber(s.slice(start, end+1))) {
+                    dots.push(end+1);
+                    backtracking();
+                    dots.pop();
+                }
+            }
+        }
+    }
+    backtracking();
+    return res;
+}
+
+console.log(restoreIpAddresses("19216801"));
 

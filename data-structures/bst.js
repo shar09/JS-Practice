@@ -60,7 +60,6 @@ class BinarySearchTree {
         let current = this.root;
         let previous;
         let min;
-        let subtree;
         let previousInSubTree;
         let lastNodeInMin;
         if(current === null) return null;
@@ -152,6 +151,22 @@ class BinarySearchTree {
             }
         }
     } 
+
+    balancedHeight(current) {
+        if(current === null) return 0;
+        let h1 = this.balancedHeight(current.left);
+        let h2 = this.balancedHeight(current.right);
+        if(h1 === -1 || h2 === -1) return -1;
+        if(Math.abs(h1 - h2) > 1) return -1;
+        if(h1 > h2) return h1+1;
+        return h2+1;
+    }
+
+    isBalanced() {
+        let current = this.root;
+        if(this.balancedHeight(current) > -1) return true;
+        return false;
+    }
 }  
 
 let bst = new BinarySearchTree();
@@ -169,6 +184,7 @@ console.log(bst);
 console.log(bst.remove(85));
 console.log(bst.root.right.right.value);
 console.log(bst.root.right.right.right.left.left.value);
+console.log(bst.isBalanced());
 
 //-------------------------
 // * Insert alternate solution
