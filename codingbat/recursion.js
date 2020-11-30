@@ -139,3 +139,76 @@ function count7(n) {
 // count7(77) --> 2
 
 // console.log(count7(77))
+
+function count8(n, prev=0, count=0) {
+    function helper(n) {
+        if(n===0)
+        return 0;    
+        if (n%10 === 8) {
+            if(prev > 0) {
+                count = count * 2;
+                prev++;
+            }
+            else {
+                count++;
+                prev++;
+            }
+        }
+        else {
+            prev = 0;
+        }
+        helper( (parseInt(n/10)), prev);
+    }
+    helper(n)
+    return count;
+}
+
+// console.log(count8( 8818 ));
+// console.log(count8( 1 ));
+// console.log(count8( 8 ));
+// console.log(count8( 8088888 ));
+
+function powerN(base, n) {
+    if(n === 1) {
+        return base;
+    }
+    return base * powerN(base, n-1);
+
+}
+
+ 
+// 2 * powerN(2,1) --> 2 * 2 = 4
+// 2  * powerN(2,2) --> 8
+// powerN(2, 3) --> 8
+
+console.log(powerN(2,3));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
