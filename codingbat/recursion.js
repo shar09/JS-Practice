@@ -140,10 +140,12 @@ function count7(n) {
 
 // console.log(count7(77))
 
+// --------------------------------------------
+
 function count8(n, prev=0, count=0) {
     function helper(n) {
         if(n===0)
-        return 0;    
+            return 0;    
         if (n%10 === 8) {
             if(prev > 0) {
                 count = count * 2;
@@ -168,6 +170,8 @@ function count8(n, prev=0, count=0) {
 // console.log(count8( 8 ));
 // console.log(count8( 8088888 ));
 
+// --------------------------------------------
+
 function powerN(base, n) {
     if(n === 1) {
         return base;
@@ -181,15 +185,100 @@ function powerN(base, n) {
 // 2  * powerN(2,2) --> 8
 // powerN(2, 3) --> 8
 
-console.log(powerN(2,3));
+// console.log(powerN(2,3));
+
+// --------------------------------------------
+
+function countX(word, i=word.length-1) {
+    let count = 0;
+    function helper(word, i) {
+        if(i<0) 
+            return;
+        if(word[i] === 'x') {
+            count++; 
+        }
+        return helper(word.substring(0, i), i-1);
+    }
+    helper(word, i);
+    return count;
+}
+
+// console.log(countX("xxhixx"));
+// console.log(countX("xhixhix"));
+// console.log(countX("hi"));
+
+// --------------------------------------------
+
+function countHi(word, i=0) {
+    let count = 0;
+    function helper(word, i) {
+
+        if(i > word.length-2)
+            return;
+        if(word.substring(i, i+2) === "hi") {
+            count++;
+        }
+        return helper(word, i+1);
+    }
+    helper(word, i);
+    return count;
+}
+                   
+// console.log(countHi("xxhixx"));
+// console.log(countHi("xhixhix"));
+// console.log(countHi("hi"));
+// console.log(countHi(""));
 
 
+            
 
+// helper(5) --> return
+// helper(4) --> return
+// helper(3) .
+// helper(2) .
+// helper(1) .
+// helper(0) .          
+// countHi(0) -> return count    
 
+// --------------------------------------------
 
+function changeXY(word, i=0) {
+    if(i === word.length) 
+        return word;
+    if(word[i] === 'x') {    
+        word = word.substring(0,i) + "y" + word.substring(i+1);
+    }
+    return changeXY(word, i+1);
+}
 
+// console.log(changeXY("xxhixx"));
+// console.log(changeXY("codex"));
+// console.log(changeXY("hello"));
+                    //   012345  
 
+// --------------------------------------------
 
+function changePi(word, i=0, pi=false) {
+    if(i > word.length-2) 
+        return word;
+    if(word.substring(i, i+2) === 'pi') {
+        pi = true;
+        word = word.substring(0,i) + "3.14" + word.substring(i+2);
+    }    
+    return pi ? changePi(word, i+4) : changePi(word, i+1);
+}
+
+console.log(changePi("pip"));
+console.log(changePi("xpix"));
+console.log(changePi("pipi"));
+
+// pi
+
+// 2 --> 4
+//  01       2
+//  pi       p
+//  3.14    
+//  0123     4
 
 
 
