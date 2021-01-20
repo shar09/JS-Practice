@@ -12,15 +12,14 @@ function factorial(n) {
 
 function bunnyEars(n) {
     // base case 
-    if(n <= 0) 
-        return 0
+    if(n === 1) 
+        return 2
     return 2 + bunnyEars(n-1);     
 }
 
-
 // 4 --> 2 + b(3), 2+ b(2), 2 + b(1), b(0)
 
-// console.log(bunnyEars(2));
+// console.log(bunnyEars(6));
 
 // --------------------------------------------
 
@@ -129,7 +128,6 @@ function count7(n) {
         return rec_count(parseInt(n/10));
     }
     return rec_count(n)
-
 }
 
 
@@ -165,10 +163,10 @@ function count8(n, prev=0, count=0) {
     return count;
 }
 
-// console.log(count8( 8818 ));
-// console.log(count8( 1 ));
-// console.log(count8( 8 ));
-// console.log(count8( 8088888 ));
+// console.log(count8( 8818 )); // 4
+// console.log(count8( 1 )); // 0
+// console.log(count8( 8 )); // 1
+// console.log(count8( 8088888 )); // 17
 
 // --------------------------------------------
 
@@ -268,17 +266,84 @@ function changePi(word, i=0, pi=false) {
     return pi ? changePi(word, i+4) : changePi(word, i+1);
 }
 
-console.log(changePi("pip"));
-console.log(changePi("xpix"));
-console.log(changePi("pipi"));
+// console.log(changePi("pip"));
+// console.log(changePi("xpix"));
+// console.log(changePi("pipi"));
 
-// pi
+// --------------------------------------------
 
-// 2 --> 4
-//  01       2
-//  pi       p
-//  3.14    
-//  0123     4
+function noX(word, i=0) {
+    if(i > word.length-1) {
+        return word;
+    }
+
+    if(word[i] === 'x') {
+        word = word.substring(i-1,i) + word.substring(i+1);
+        return noX(word, i)
+    }
+
+    return noX(word, i+1)
+}
+
+// console.log(noX("xaxb")) // "ab"
+// console.log(noX("abc") ) // "abc"
+// console.log(noX("xx")) // ""
+
+// noX(ab, i=2) -> word
+// noX(ab, i=1) -> "
+// noX(axb, i=1) -> " 
+// noX(axb, i=0) -> "
+// noX(xaxb, i=0) -> "
+
+// --------------------------------------------
+
+function array6(array, index) {
+    if(array.length === index) {
+        return false;
+    }
+    if(array[index] === 6) {
+        return true;
+    }
+    return array6(array, index+1);
+}
+
+// console.log(array6([1, 6, 4], 0)) // true
+// console.log(array6([1, 4], 0)) // false
+// console.log(array6([6], 0)) // true
+
+// --------------------------------------------
+
+function array11(array, index, count=0) {
+    if(index === array.length) 
+        return count;
+
+    if(array[index] === 11) {
+        count = count + 1;
+    }
+    return array11(array, index+1, count);
+}
+
+// console.log(array11([11, 11, 11], 0)) // 3
+// console.log(array11([1, 2, 11], 0)) // 1
+// console.log(array11([11, 11], 0)) // 2
+// console.log(array11([1, 2, 3, 4], 0)) // 0
+
+// --------------------------------------------
+
+function array220(array, index) {
+    if(index >= array.length-1) {
+        return false;
+    }
+    if(array[index] * 10 === array[index+1]) {
+        return true;
+    }
+    return array220(array, index+1);
+}
+
+// console.log(array220([1, 2, 20], 0) )// true
+// console.log(array220([3, 30], 0)) // true
+// console.log(array220([3], 0)) // false
+
 
 
 
