@@ -344,19 +344,112 @@ function array220(array, index) {
 // console.log(array220([3, 30], 0)) // true
 // console.log(array220([3], 0)) // false
 
+// --------------------------------------------
+
+function allStar(word, i=0) {
+    if(word.length === 0 )
+        return;
+    if(word.length === 1)
+        return word + "*";
+    if(i === word.length-1) 
+        return word;
+    word = word.substring(0,i+1)+ "*" + word.substring(i+1);
+    return allStar(word, i+2);
+}
+
+// console.log(allStar("hello")) // "h*e*l*l*o"
+// console.log(allStar("abc")) // "a*b*c"
+// console.log(allStar("ab")) // "a*b"
+// console.log(allStar("a")) // "a*b"
+
+// --------------------------------------------
+
+function pairStar(word, i=0) {
+    if(i === word.length)
+        return word
+    if(word[i] === word[i+1])
+        word = word.substring(0, i+1)+ "*" +word.substring(i+1, word.length)
+    return pairStar(word, i+1)
+}
+
+// console.log(pairStar("hello")) // "hel*lo"
+// console.log(pairStar("xxyy")) // "x*xy*y"
+// console.log(pairStar("aaaa")) //  "a*a*a*a"
 
 
+// --------------------------------------------
+
+function endX(word, count = 0 , i=0, len = word.length) {
+    // Base Case
+    if(count === len)
+        return word
+    if(word[i] === 'x') {
+        word = word.substring(0, i) + word.substring(i+1, len) + 'x'
+        return endX(word, ++count, i, len)
+    }
+    return endX(word, count+1, i+1, len)
+}
+
+// console.log(endX("xxre")) // "rexx"
+// console.log(endX("xxhixx")) // "hixxxx"
+// console.log(endX("xhixhix")) // "hihixxx"
+
+// --------------------------------------------
+
+function countPairs(word, count=0, i=0) {
+    if(i >= word.length-2) 
+        return count
+    if(word[i] === word[i+2])  
+        return countPairs(word, count+1, i+1)  
+    return countPairs(word, count, i+1)
+}
+
+// console.log(countPairs("axa")) // 1
+// console.log(countPairs("axax")) // 2
+// console.log(countPairs("axbx")) // 1
+
+// --------------------------------------------
+
+function countAbc(word, count=0, i=0) {
+    if(i >= word.length - 2)
+        return count
+    if( word.substring(i, i+3) === 'abc' || word.substring(i, i+3) === 'aba')
+        return countAbc(word, count+1, i+3)
+    return countAbc(word, count, i+1)    
+}
+
+// console.log(countAbc("abc")) // 1
+// console.log(countAbc("abcxxabc")) // 2
+// console.log(countAbc("abaxxaba") ) // 2
+
+// --------------------------------------------
+
+function count11(word, count=0, i=0) {
+    if(i >= word.length - 1)
+        return count
+    if( word.substring(i, i+2) === '11')
+        return count11(word, count+1, i+2)
+    return count11(word, count, i+1)        
+}
+
+console.log(count11("11abc11")) // 2
+console.log(count11("abc11x11x11")) // 3
+console.log(count11("111")) // 1
 
 
+function stringClean(word, i=0, len=word.length-1) {
+    if(i === len)
+        return word
+    if( word[i] === word[i+1]) {
+        word = word.substring(0,i) + word.substring(i+1)
+        return stringClean(word, i)    
+    }
+    return stringClean(word, i+1, len)
+}
 
-
-
-
-
-
-
-
-
+console.log(stringClean("yyzzza")) // "yza"
+console.log(stringClean("abbbcdd")) // "abcd"
+console.log(stringClean("Hello")) // "Helo"
 
 
 
