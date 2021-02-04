@@ -432,10 +432,11 @@ function count11(word, count=0, i=0) {
     return count11(word, count, i+1)        
 }
 
-console.log(count11("11abc11")) // 2
-console.log(count11("abc11x11x11")) // 3
-console.log(count11("111")) // 1
+// console.log(count11("11abc11")) // 2
+// console.log(count11("abc11x11x11")) // 3
+// console.log(count11("111")) // 1
 
+// --------------------------------------------
 
 function stringClean(word, i=0, len=word.length-1) {
     if(i === len)
@@ -447,9 +448,65 @@ function stringClean(word, i=0, len=word.length-1) {
     return stringClean(word, i+1, len)
 }
 
-console.log(stringClean("yyzzza")) // "yza"
-console.log(stringClean("abbbcdd")) // "abcd"
-console.log(stringClean("Hello")) // "Helo"
+// console.log(stringClean("yyzzza")) // "yza"
+// console.log(stringClean("abbbcdd")) // "abcd"
+// console.log(stringClean("Hello")) // "Helo"
+
+// --------------------------------------------
+
+function countHi2(word, i=0, count=0) {
+    if( i > word.length -2 )
+        return count
+    if( word.substring(i,i+2) === 'hi' && word[i-1] !== 'x' ) {
+        count = count + 1;
+        return countHi2(word, i+2, count)
+    }
+    return countHi2(word, i+1, count)
+}
+
+// console.log(countHi2("ahixhi")) // 1
+// console.log(countHi2("ahibhi")) // 2
+// console.log(countHi2("xhixhi")) // 0
+
+// --------------------------------------------
+
+function parenBit(word, i=0, start=null) {
+    if(i >= word.length)
+        return '' 
+    if(start !== null && word[i] === ')')
+        return word.substring(start, i+1)
+    if(word[i] === '(')
+        return parenBit(word, i+1, i)
+    if(start !== null) 
+        return parenBit(word, i+1, start)
+    return parenBit(word, i+1) 
+}
+
+// console.log(parenBit("xyz(abc)123")) // "(abc)"
+// console.log(parenBit("x(hello)")) // "(hello)"
+// console.log(parenBit("(xy)1")) // "(xy)"
+
+// --------------------------------------------
+
+function nestParen(str, start=0, end=str.length-1) {
+    if(start > end) 
+        return true
+
+    if(str[start] === '(' && str[end] === ')') {
+        return nestParen(str, start+1, end-1)
+    }
+    return false
+}
+
+// console.log(nestParen("(())")) // true
+// console.log(nestParen("((()))")) // true
+// console.log(nestParen("(((x))")) // false
+
+
+
+
+
+
 
 
 

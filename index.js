@@ -1784,27 +1784,295 @@ function fixedPoint(arr) {
 //     // return minLeafDepth;   
 // }
 
+// const hello = "hello";
+
+
+// let obj = {
+//     hello: 'hello',
+//     test : () => {
+//     console.log(this.hello);
+//     console.log(this);
+// }
+// }
+// obj.test();
+
+
+// class Testclass {
+//     constructor() {
+//         this.name = "name";
+//     }
+
+//     methodone() {
+//         console.log(this);
+//         console.log(this.name);
+//     }
+
+//     methodtwo = () => {
+//         console.log(this);
+//         console.log(this.name);
+//     }
+// }
+
+// const testclass = new Testclass();
+
+// testclass.methodone();
+// testclass.methodtwo();
+
+let obj = {
+    hello: "name",
+    do: function() {
+        console.log("sing");
+    }
+}
+
+let john = Object.create(obj) 
 
 
 
+// "abcde"
+// "dza"
+// "baba"
+// "dzad"
+// "baecbe" --> acbe
+
+// variables: uniqueString, hashmap, 
+// loop through s
+    // if(alllleters['s[i]']) {
+        // curr_index = s.firstIndexof(s[i])
+        // if(s[curr_index] < s[curr_index+1]) {
+            
+    //     } 
+    // }
+    // s.split(0, curr_index) + s
+
+
+// Lexicographically smallest unique subsequence    
+function smallestSubSequence(s) {
+    let uniqueString = "";
+    let allLetters = {};
+    for(let i=0; i<s.length; i++) {
+        if(allLetters[s[i]]) {
+            let curr_index = uniqueString.indexOf(s[i]);
+            if(s[curr_index] > s[curr_index + 1]) {
+                uniqueString = uniqueString.substring(0, curr_index) + 
+                    uniqueString.substring(curr_index+1, uniqueString.length) + s[i];
+            }
+        }
+        else {
+            allLetters[s[i]] = 1;
+            uniqueString = uniqueString + s[i];
+        }
+    }
+    return uniqueString;
+}
+
+// console.log(smallestSubSequence("dzad"));
+// console.log(smallestSubSequence("baecbe"));
+// console.log(smallestSubSequence("acbc"));
+// console.log(smallestSubSequence("ababa"));
+
+
+function Address(city, state, country) {
+    this.city = city;
+    this.state = state;
+    this.country = country;
+    this.print = function() {
+        console.log(this.city + ", " +this.state + ", " +this.country);
+    }
+}
+
+Address.prototype.printCountry = function() {
+    console.log(this.country);
+}
+
+let present = new Address("Austin", "TX", "USA");
+let native = new Address("Hyderabad", "TS", "India");
+
+function test(city, state, address) {
+    return {
+        print: function() {
+            return `${city}`
+        }
+    }
+}
+
+let t = test("zap","xa", "gaa");
+// console.log(t);
+// console.log(t.print());
+
+class Buddress {
+    constructor(bity, bate, bountry) {
+        this.bity = bity;
+        this.bate = bate;
+        this.bountry = bountry;
+    }
+    print() {
+        console.log(this.bity + ", " +this.bate + ", " +this.bountry);
+    }
+}
+
+let bresent = new Buddress("bostin", "BX", "USB");
 
 
 
+// function parent() {
+//     function child() {
+//         console.log(this);
+//     }
+//     child();
+// }
+
+// let testobj = {
+//     testfunc: function() {
+//         console.log(this);
+//         let nestedarrow = () => {
+//             console.log(this);
+//         }
+//         nestedarrow();
+//     }
+// }
+
+// testobj.testfunc();
+
+var foo = {
+    a: 5,
+    b: 6,
+    c: this.a + this.b,  // Doesn't work
+    d: this.a
+};
+
+function Zoo() {
+    this.a = 5;
+    this.b = 6;
+    this.c = this.a + this.b;
+}
+
+let zoo = new Zoo();
+// console.log(zoo);
+// console.log(foo);
 
 
+b = 15;
+
+function ccc() {
+    var a = 10;
+    console.log(a);
+    console.log(this.b);
+}
+
+let ttt = () => console.log("A " +this);
+
+// ccc();
+// ttt();
+
+// var hero = "abc";
+// console.log(this.hero);
+// console.log(window.hero);
+
+// console.log(this);
+
+// (function() {
+//     console.log(this);
+// })();
 
 
+let date = '2018-06-06T00:00:00.000+00:00'
+
+function formatDate(date) {
+    if(date === null) {
+        return null;
+    }
+
+    let months = [null, 'Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    let dateArray =  new Intl.DateTimeFormat().format(new Date(date)).split('/');
+
+    return months[dateArray[0]] + "' " +dateArray[2];
+
+}
+
+console.log(formatDate(date));
+
+function formatExp(d) {
+    if(d === null) {
+        return null;
+    }
+
+    let dateArray = d.split('/');
+    let month = "";
+    let day = "";
+
+    let year = dateArray[2];
+  
+    if( dateArray[0].length === 1) {
+      month = "0" + dateArray[0];
+    }
+    else {
+      month = dateArray[0];
+    }
+  
+    if(dateArray[1].length === 1) {
+      day = "0"+dateArray[1];
+    }
+    else {
+      day = dateArray[1];
+    }
+  
+    return year + '-' +month + '-' +day;
+}
+
+function findClosest(array, target) {
+
+}
+
+console.log(findClosest(array, target));
 
 
+// Binary Search
+
+// leftPointer = 0, rightPointer = array.length-1
+
+// while leftPointer is less than or equal to rightPointer
+    
+    // midPointer = Math.floor(leftPointer + rightPointer / 2)
+
+    // if(midValue is equal to target)
+        // return midPointer
+    // if(midValue is greater than target)
+        // leftPointer = midPointer + 1 
+    // if(midValue is less than target)
+        // rightPointer = midPointer - 1  
+
+// Return Closest        
+// #Pre-Processing
+// if( leftPointer is greater than array length )
+    // return rightValue
+// if (rightPointer is less than 0)
+    // return leftValue
+// if (target - rightValue is less than leftValue - target)
+    // return rightValue
+// else
+    // return leftValue         
+
+//  0    1   2   3  4
+// [10, 10, 10, 40, 50] target = 60
+//  l    m   m       r
 
 
+// Return left most
 
+// leftPointer = 0, rightPointer = array.length-1
 
+// while leftPointer is less than or equal to rightPointer
+    
+    // midPointer = Math.floor(leftPointer + rightPointer / 2)
 
-
-
-
-
-
-
+    // if(midValue is equal to target)
+        // if( array[midPointer - 1] is equal target)
+            // rightPointer = midPointer - 1
+        // return midPointer
+    // if(midValue is greater than target)
+        // leftPointer = midPointer + 1 
+    // if(midValue is less than target)
+        // rightPointer = midPointer - 1  
 
