@@ -502,6 +502,72 @@ function nestParen(str, start=0, end=str.length-1) {
 // console.log(nestParen("((()))")) // true
 // console.log(nestParen("(((x))")) // false
 
+// --------------------------------------------
+
+function strCount(word, sub, i=0, count=0) {
+    if( i > word.length - sub.length )
+        return count;
+    if( word.substring(i, i+sub.length) === sub )
+        return strCount(word, sub, i+sub.length, count+1)
+    return strCount(word, sub, i+1, count)    
+}
+
+// console.log(strCount("catcowcat", "cat")) // 2
+// console.log(strCount("catcowcat", "cow")) // 1
+// console.log(strCount("catcowcat", "dog")) // 0
+// console.log(strCount("catcatfgffdogg", "dogg")) // 1
+
+// --------------------------------------------
+
+function strCopies(word, sub, givenCount, count=0, i=0) {
+    if( i > word.length - sub.length) {
+        if( givenCount === count)
+            return true;
+        else
+            return false;    
+    }
+    if( word.substring(i, i+sub.length) === sub )
+        return strCopies(word, sub, givenCount, count+1, i+sub.length)
+    return strCopies(word, sub, givenCount, count, i+1)    
+}
+
+// console.log(strCopies("catcowcat", "cat", 2)) // true
+// console.log(strCopies("catcowcat", "cow", 2)) // false
+// console.log(strCopies("catcowcat", "cow", 1)) // true
+
+// --------------------------------------------
+
+function strDist(word, sub, i=0, maxLength=0, start=null ) {
+    if( i > word.length - sub.length)
+        return maxLength;
+
+    if( word.substring(i, i+sub.length) === sub ) {     
+        if( start !== null) {
+            let length = i+sub.length - start;
+            
+            maxLength = length > maxLength ? length : maxLength;
+            
+            return strDist(word, sub, i+sub.length, maxLength, i);
+        }
+
+        else
+            return strDist(word, sub, i+sub.length, sub.length, i);
+    }
+
+    return strDist(word, sub, i+1, maxLength, start);    
+}
+
+console.log(strDist("catcowcat", "cat")) // 9
+console.log(strDist("catcowcat", "cow")) // 3
+console.log(strDist("cccatcowcatxx", "cat")) // 9
+console.log(strDist("catcowcatcowcowcat", "cat")) // 12
+console.log(strDist("catcowcat", "dog")) // 9
+
+// c a t c o w c a t
+// 0 1 2 3 4 5 6 7 8
+
+           
+
 
 
 
